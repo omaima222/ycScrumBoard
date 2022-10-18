@@ -5,9 +5,8 @@
 
 function createTask() {
     // initialiser task form
-
+    
     // Afficher le boutton save
-
     // Ouvrir modal form
     
 }
