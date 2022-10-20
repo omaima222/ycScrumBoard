@@ -4,38 +4,55 @@
  */
 
 
-// let title = document.getElementById("title");
-// let priority = document.getElementById("priority");
-// let status = document.getElementById("status");
-// //let type = document.getElementById("type");
-// let typeFeature = document.getElementById("feature");
-// let typeBug = document.getElementById("bug");
-// let date = document.getElementById("date");
-// let description = document.getElementById("description");
+ let title = document.getElementById("title");
+ let priority = document.getElementById("priority");
+ let statusInput = document.getElementById("status");
+ //let type = document.getElementById("type");
+ let typeFeature = document.getElementById("feature");
+ let typeBug = document.getElementById("bug");
+ let date = document.getElementById("date");
+ let description = document.getElementById("description");
+ let TODO = document.getElementById("to-do-tasks");
+ let PROGRESS = document.getElementById("in-progress-tasks");
+ let DONE = document.getElementById("done-tasks");
+ console.log(tasks);
+ let x=0;
+ let newTask={};
 
-// let card={};
-// function stock(){
-//     card["title"]= title.value;
-//     card["description"]=description.value;
-//     card["date"]=date.value;
-//     if( status.value == 1 ){
-//         card["status"]="To Do";
-//     }else if( status.value == 2 ){
-//         card["status"]="In Progress";
-//     }else if ( status.value == 3 ){
-//         card["status"]="Done";
-//     }
-    
-// }
-let TODO = document.getElementById("to-do-tasks");
-let PROGRESS = document.getElementById("in-progress-tasks");
-let DONE = document.getElementById("done-tasks");
-console.log(tasks);
-let x=0;
+function stock(){
+	 newTask["title"]= title.value;
+     newTask["description"]=description.value;
+     newTask["date"]=date.value;
+
+     if( statusInput.value == 1 ){
+         newTask["status"]="To Do";
+     }else if( statusInput.value == 2 ){
+         newTask["status"]="In Progress";
+     }else if ( statusInput.value == 3 ){
+         newTask["status"]="Done";
+     }
+
+	 if( priority.value == 1 ){
+		newTask["priority"]="Low";
+	}else if( priority.value == 2 ){
+		newTask["priority"]="Medium";
+	}else if ( priority.value == 3 ){
+		newTask["priority"]="High";
+	}
+
+	if (typeFeature.checked == true) {
+        newTask["type"] = "Feature";
+    }
+    else {
+        newTask["type"] = "Bug";
+    }
+ }
+function displayTasks(){
 for(let i=0;i<tasks.length;i++){
     x++;
+    let y=0;
     if(tasks[i].status == "To Do"){
-    
+	 y++;
      TODO.innerHTML += `
        <button class="card-body btn btn-white rounded-0 border-0 border-bottom p-2 d-flex">
 								<div class="px-3 py-2 fa-lg">
@@ -48,10 +65,16 @@ for(let i=0;i<tasks.length;i++){
 										<div class="fw-bold" title="${tasks[i].description}">There is hardly anything more frustrating than having t...</div>
 									</div>
 									<div class="">
-										<span class="btn btn-primary px-2 py-1 border-0 ">High</span>
-										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25 border-0 text-black ">Feature</span>
+										<span class="btn btn-primary px-2 py-1 border-0 ">${tasks[i].priority}</span>
+										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25 border-0 text-black ">${tasks[i].type}</span>
 									</div>
 								</div>
+							<div class="flex-column justify-content-between align-items-end ">
+								<i data-bs-target="#modal-task" data-bs-toggle="modal" class="fa-solid fa-pen-to-square fs-5"></i>
+								<i  class="align-items-end fa-solid fa-trash fs-5"></i>
+
+				            </div>
+							
 		</button>
      `;
     }
@@ -68,8 +91,8 @@ for(let i=0;i<tasks.length;i++){
 										<div class="fw-bold"" title="${tasks[i].description}">including as many details as possible.</div>
 									</div>
 									<div class="">
-										<span class="btn btn-primary px-2 py-1 border-0 ">High</span>
-										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25 border-0 text-black ">Feature</span>
+										<span class="btn btn-primary px-2 py-1 border-0 ">${tasks[i].priority}</span>
+										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25 border-0 text-black ">${tasks[i].type}</span>
 									</div>
 								</div>
 		</button>
@@ -88,9 +111,10 @@ for(let i=0;i<tasks.length;i++){
 										<div class="text-secondary">#${x} created in ${tasks[i].date}</div>
 										<div class="fw-bold" title="${tasks[i].description}">as they can be helpful in reproducing the steps that ca...</div>
 									</div>
+
 									<div class="">
-										<span class="btn btn-primary px-2 py-1 border-0">High</span>
-										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25 border-0 text-black">Bug</span>
+										<span class="btn btn-primary px-2 py-1 border-0">${tasks[i].priority}</span>
+										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25 border-0 text-black">${tasks[i].type}</span>
 									</div>
 								</div>
 							</button>
@@ -98,9 +122,81 @@ for(let i=0;i<tasks.length;i++){
         `
     }
 
-
-
 }
+}
+function addTask(){
+	    stock();
+		x++;
+		tasks.push(newTask);
+		if(newTask.status == "To Do"){
+
+		 TODO.innerHTML += `
+		   <button class="card-body btn btn-white rounded-0 border-0 border-bottom p-2 d-flex">
+									<div class="px-3 py-2 fa-lg">
+										<i class="bi bi-question-circle text-success "></i> 
+									</div>
+									<div class="text-start">
+										<div class=" fw-bolder ">${newTask.title}</div>
+										<div class="card-text">
+											<div class="text-secondary">#${x} created in ${newTask.date}</div>
+											<div class="fw-bold" title="${newTask.description}">There is hardly anything more frustrating than having t...</div>
+										</div>
+										<div class="">
+											<span class="btn btn-primary px-2 py-1 border-0 ">${newTask.priority}</span>
+											<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25 border-0 text-black ">${newTask.type}</span>
+										</div>
+									</div>
+			</button>
+		 `;
+		}
+		if(newTask.status == "In Progress"){
+			PROGRESS.innerHTML += `
+			<button class="card-body btn btn-white rounded-0 border-0 border-bottom p-2 d-flex ">
+									<div class="mx-3 my-2 spinner-border  spinner-border-sm text-success" role="status">
+										<span class="visually-hidden"></span> 
+									</div>
+									<div class="text-start">
+										<div class="fw-bolder ">${newTask.title}</div>
+										<div class="card-text">
+											<div class="text-secondary">#${x} created in ${newTask.date}</div>
+											<div class="fw-bold"" title="${newTask.description}">including as many details as possible.</div>
+										</div>
+										<div class="">
+											<span class="btn btn-primary px-2 py-1 border-0 ">${newTask.priority}</span>
+											<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25 border-0 text-black ">${newTask.type}</span>
+										</div>
+									</div>
+			</button>
+	
+			`
+		}
+		if(newTask.status == "Done"){
+			DONE.innerHTML += `
+								<button class="card-body btn btn-white rounded-0  border-0 border-bottom card-body p-2 d-flex">
+									<div class="px-3 py-2 fa-lg">
+										<i class="bi bi-check-circle text-success"></i> 
+									</div>
+									<div class="text-start">
+										<div class="fw-bolder ">${newTask.title}</div>
+										<div class="card-text">
+											<div class="text-secondary">#${x} created in ${newTask.date}</div>
+											<div class="fw-bold" title="${newTask.description}">as they can be helpful in reproducing the steps that ca...</div>
+										</div>
+										<div class="">
+											<span class="btn btn-primary px-2 py-1 border-0">${newTask.priority}</span>
+											<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25 border-0 text-black">${newTask.type}</span>
+										</div>
+									</div>
+								</button>
+			
+			`
+		}
+	
+}
+
+
+displayTasks();
+
 
 function createTask() {
     // initialiser task form
