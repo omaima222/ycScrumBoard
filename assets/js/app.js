@@ -3,11 +3,10 @@
  * 
  */
 
-
+ let x=17;
  let title = document.getElementById("title");
  let priority = document.getElementById("priority");
  let statusInput = document.getElementById("status");
- //let type = document.getElementById("type");
  let typeFeature = document.getElementById("feature");
  let typeBug = document.getElementById("bug");
  let date = document.getElementById("date");
@@ -16,7 +15,6 @@
  let PROGRESS = document.getElementById("in-progress-tasks");
  let DONE = document.getElementById("done-tasks");
  console.log(tasks);
- let x=0;
  let newTask={};
 
 function stock(){
@@ -49,10 +47,9 @@ function stock(){
  }
 function displayTasks(){
 for(let i=0;i<tasks.length;i++){
-    x++;
-    let y=0;
+	x=0;
+	x++;
     if(tasks[i].status == "To Do"){
-	 y++;
      TODO.innerHTML += `
        <button class="card-body btn btn-white rounded-0 border-0 border-bottom p-2 d-flex">
 								<div class="px-3 py-2 fa-lg">
@@ -62,25 +59,28 @@ for(let i=0;i<tasks.length;i++){
 									<div class=" fw-bolder ">${tasks[i].title}</div>
 									<div class="card-text">
 										<div class="text-secondary">#${x} created in ${tasks[i].date}</div>
-										<div class="fw-bold" title="${tasks[i].description}">There is hardly anything more frustrating than having t...</div>
+										<div class="fw-bold" title="${tasks[i].description}">${tasks[i].description}</div>
 									</div>
 									<div class="">
 										<span class="btn btn-primary px-2 py-1 border-0 ">${tasks[i].priority}</span>
 										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25 border-0 text-black ">${tasks[i].type}</span>
 									</div>
 								</div>
-							<div class="flex-column justify-content-between align-items-end ">
-								<i data-bs-target="#modal-task" data-bs-toggle="modal" class="fa-solid fa-pen-to-square fs-5"></i>
-								<i  class="align-items-end fa-solid fa-trash fs-5"></i>
-
-				            </div>
+								<div class="justify-content-end align-self-end   mx-3 ">
+								   <i  data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
+								</div>
+								<div class="justify-content-end align-self-end  ">
+								   <i onclick="deleteTask(${tasks[i].id});"  class="fa-solid fa-trash "></i>
+								</div>
+							
+								
 							
 		</button>
      `;
     }
     if(tasks[i].status == "In Progress"){
         PROGRESS.innerHTML += `
-        <button class="card-body btn btn-white rounded-0 border-0 border-bottom p-2 d-flex ">
+        <button class="card-body btn btn-white rounded-0 border-0 border-bottom p-2 d-flex position-relative ">
 								<div class="mx-3 my-2 spinner-border  spinner-border-sm text-success" role="status">
 									<span class="visually-hidden"></span> 
 								</div>
@@ -88,14 +88,20 @@ for(let i=0;i<tasks.length;i++){
 									<div class="fw-bolder ">${tasks[i].title}</div>
 									<div class="card-text">
 										<div class="text-secondary">#${x} created in ${tasks[i].date}</div>
-										<div class="fw-bold"" title="${tasks[i].description}">including as many details as possible.</div>
+										<div class="fw-bold" title="${tasks[i].description}">${tasks[i].description}</div>
 									</div>
 									<div class="">
 										<span class="btn btn-primary px-2 py-1 border-0 ">${tasks[i].priority}</span>
 										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25 border-0 text-black ">${tasks[i].type}</span>
 									</div>
 								</div>
-		</button>
+								<div class="justify-content-end align-self-end   mx-3 ">
+								   <i  data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
+								</div>
+								<div class="justify-content-end align-self-end  ">
+								   <i onclick="deleteTask(${tasks[i].id});"  class="fa-solid fa-trash "></i>
+								</div>
+		</button> 
 
         `
     }
@@ -109,13 +115,19 @@ for(let i=0;i<tasks.length;i++){
 									<div class="fw-bolder ">${tasks[i].title}</div>
 									<div class="card-text">
 										<div class="text-secondary">#${x} created in ${tasks[i].date}</div>
-										<div class="fw-bold" title="${tasks[i].description}">as they can be helpful in reproducing the steps that ca...</div>
+										<div class="fw-bold" title="${tasks[i].description}">${tasks[i].description}</div>
 									</div>
 
 									<div class="">
 										<span class="btn btn-primary px-2 py-1 border-0">${tasks[i].priority}</span>
 										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25 border-0 text-black">${tasks[i].type}</span>
 									</div>
+								</div>
+								<div class="justify-content-end align-self-end   mx-3 ">
+								   <i  data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
+								</div>
+								<div class="justify-content-end align-self-end  ">
+								   <i onclick="deleteTask(${tasks[i].id})"  class="fa-solid fa-trash "></i>
 								</div>
 							</button>
         
@@ -139,13 +151,19 @@ function addTask(){
 										<div class=" fw-bolder ">${newTask.title}</div>
 										<div class="card-text">
 											<div class="text-secondary">#${x} created in ${newTask.date}</div>
-											<div class="fw-bold" title="${newTask.description}">There is hardly anything more frustrating than having t...</div>
+											<div class="fw-bold" title="${newTask.description}">${newTask.description}</div>
 										</div>
 										<div class="">
 											<span class="btn btn-primary px-2 py-1 border-0 ">${newTask.priority}</span>
 											<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25 border-0 text-black ">${newTask.type}</span>
 										</div>
 									</div>
+									<div class="justify-content-end align-self-end   mx-3 ">
+								      <i  data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
+								    </div>
+								    <div class="justify-content-end align-self-end  ">
+								      <i onclick="deleteTask(${tasks[i].id});"  class="fa-solid fa-trash "></i>
+								    </div>
 			</button>
 		 `;
 		}
@@ -159,13 +177,19 @@ function addTask(){
 										<div class="fw-bolder ">${newTask.title}</div>
 										<div class="card-text">
 											<div class="text-secondary">#${x} created in ${newTask.date}</div>
-											<div class="fw-bold"" title="${newTask.description}">including as many details as possible.</div>
+											<div class="fw-bold"" title="${newTask.description}">${newTask.description}</div>
 										</div>
 										<div class="">
 											<span class="btn btn-primary px-2 py-1 border-0 ">${newTask.priority}</span>
 											<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25 border-0 text-black ">${newTask.type}</span>
 										</div>
 									</div>
+									<div class="justify-content-end align-self-end   mx-3 ">
+								      <i  data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
+								    </div>
+								    <div class="justify-content-end align-self-end  ">
+								      <i onclick="deleteTask(${tasks[i].id});"  class="fa-solid fa-trash "></i>
+								    </div>
 			</button>
 	
 			`
@@ -180,20 +204,25 @@ function addTask(){
 										<div class="fw-bolder ">${newTask.title}</div>
 										<div class="card-text">
 											<div class="text-secondary">#${x} created in ${newTask.date}</div>
-											<div class="fw-bold" title="${newTask.description}">as they can be helpful in reproducing the steps that ca...</div>
+											<div class="fw-bold" title="${newTask.description}">${newTask.description}</div>
 										</div>
 										<div class="">
 											<span class="btn btn-primary px-2 py-1 border-0">${newTask.priority}</span>
 											<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25 border-0 text-black">${newTask.type}</span>
 										</div>
 									</div>
+									<div class="justify-content-end align-self-end   mx-3 ">
+								      <i  data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
+								    </div>
+								    <div class="justify-content-end align-self-end  ">
+								      <i onclick="deleteTask();"  class="fa-solid fa-trash "></i>
+								    </div>
 								</button>
 			
 			`
 		}
 	
 }
-
 
 displayTasks();
 
@@ -238,14 +267,18 @@ function updateTask() {
     // Refresh tasks
     
 }
+function deleteTask(){
+      let index;
+	  for(let i=0;i<tasks.length;i++){
+		if( tasks[i].id == id ) index=i;
+	  }
+	  tasks.splice(index,1);
 
-function deleteTask() {
+} 
+function deleteTasks() {
     // Get index of task in the array
-
     // Remove task from array by index splice function
-
     // close modal form
-
     // refresh tasks
 }
 
