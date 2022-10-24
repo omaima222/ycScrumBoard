@@ -10,9 +10,10 @@
  let typeBug = document.getElementById("bug");
  let date = document.getElementById("date");
  let description = document.getElementById("description");
- 
+ let toDoCount = document.getElementById("to-do-tasks-count");
+ let inPCount = document.getElementById("in-progress-tasks-count");
+ let doneCount = document.getElementById("done-tasks-count");
 
- console.log(tasks);
 
 
   displayTasks();
@@ -48,17 +49,22 @@ function displayTasks(){
  let TODO = document.getElementById("to-do-tasks");
  let PROGRESS = document.getElementById("in-progress-tasks");
  let DONE = document.getElementById("done-tasks");
+ let shortdes ;
+ let x=1;
 	TODO.innerHTML=" ";
 	PROGRESS.innerHTML=" ";
 	DONE.innerHTML=" ";
-	let shortdes ;
-	let x=1;
+let todoco=0;
+let iprco=0;
+let donco=0;
+
 for(let i=0;i<tasks.length;i++){
 	if(tasks[i].description.length>50){
 		shortdes = tasks[i].description.substring(0,50);
 	}else{ shortdes = tasks[i].description }
 
 	if(tasks[i].status == "To Do"){
+		todoco++;
      TODO.innerHTML += `
        <button class="card-body btn btn-white rounded-0 border-0 border-bottom p-2 d-flex">
 								<div class="px-3 py-2 fa-lg">
@@ -71,12 +77,12 @@ for(let i=0;i<tasks.length;i++){
 										<div class="fw-bold" title="${tasks[i].description}">${shortdes}</div>
 									</div>
 									<div class="">
-										<span class="btn btn-primary px-2 py-1 border-0 ">${tasks[i].priority}</span>
-										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25 border-0 text-black ">${tasks[i].type}</span>
+										<span class="btn btn-primary px-2 py-1 rounded-pill border-0 ">${tasks[i].priority}</span>
+										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25 rounded-pill border-0 text-black ">${tasks[i].type}</span>
 									</div>
 								</div>
 								<div class="justify-content-end align-self-end  position-absolute end-0 mx-5 ">
-								   <i  data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
+								   <i onclick="updateTask(${x});"  data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
 								</div>
 								<div class="justify-content-end align-self-end  position-absolute end-0 mx-2">
 								   <i onclick="deleteTask(${x});"  class="fa-solid fa-trash "></i>
@@ -86,6 +92,7 @@ for(let i=0;i<tasks.length;i++){
      `;
     }
     if(tasks[i].status == "In Progress"){
+		iprco++;
         PROGRESS.innerHTML += `
         <button class="card-body btn btn-white rounded-0 border-0 border-bottom p-2 d-flex position-relative ">
 								<div class="mx-3 my-2 spinner-border  spinner-border-sm text-success" role="status">
@@ -103,7 +110,7 @@ for(let i=0;i<tasks.length;i++){
 									</div>
 								</div>
 								<div class="justify-content-end align-self-end  position-absolute end-0 mx-5 ">
-								   <i  data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
+								   <i onclick="updateTask(${x});"  data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
 								</div>
 								<div class="justify-content-end align-self-end  position-absolute end-0 mx-2">
 								   <i onclick="deleteTask(${x});"  class="fa-solid fa-trash "></i>
@@ -113,6 +120,7 @@ for(let i=0;i<tasks.length;i++){
         `
     }
     if(tasks[i].status == "Done"){
+		donco++;
         DONE.innerHTML += `
         					<button class="card-body btn btn-white rounded-0  border-0 border-bottom card-body p-2 d-flex">
 								<div class="px-3 py-2 fa-lg">
@@ -131,7 +139,7 @@ for(let i=0;i<tasks.length;i++){
 									</div>
 								</div>
 							<div class="justify-content-end align-self-end  position-absolute end-0 mx-5 ">
-								<i  data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
+								<i  onclick="updateTask(${x});" data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
 							 </div>
 							 <div class="justify-content-end align-self-end  position-absolute end-0 mx-2">
 								<i onclick="deleteTask(${x});"  class="fa-solid fa-trash "></i>
@@ -143,8 +151,10 @@ for(let i=0;i<tasks.length;i++){
 	++x;
 
 }
+toDoCount.innerHTML = todoco;
+inPCount.innerHTML = iprco;
+doneCount.innerHTML = donco;
 }
-
 
 
 function createTask() {
@@ -179,11 +189,18 @@ function saveTask() {
 
 function editTask(index) {
     // Initialisez task form
-
+	newTask = {
+        'title'         :   title.value,
+        'type'          :   '',
+        'priority'      :   priority.value,
+        'status'        :   statusInput.value,
+        'date'          :   date.value,
+        'description'   :   description.value,
+	}
     // Affichez updates
-
+    
     // Delete Button
-
+    let modalFooter = getElementById()
     // Définir l’index en entrée cachée pour l’utiliser en Update et Delete
 
     // Definir FORM INPUTS
