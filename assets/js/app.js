@@ -13,8 +13,8 @@
  let toDoCount = document.getElementById("to-do-tasks-count");
  let inPCount = document.getElementById("in-progress-tasks-count");
  let doneCount = document.getElementById("done-tasks-count");
-
-
+ let modalFooter = document.getElementById("modalFooter");
+ let modalForm = document.getElementById("taskForm");
 
   displayTasks();
 // function stock(){
@@ -45,6 +45,7 @@
 //         newTask["type"] = "Bug";
 //     }
 //  }
+
 function displayTasks(){
  let TODO = document.getElementById("to-do-tasks");
  let PROGRESS = document.getElementById("in-progress-tasks");
@@ -166,7 +167,8 @@ function createTask() {
 function saveTask() {
     // Recuperer task attributes a partir les champs input
     // Créez task object
-	const newTask = {
+	document.getElementById("update").style.display="none";
+	 newTask = {
         'title'         :   title.value,
         'type'          :   '',
         'priority'      :   priority.value,
@@ -185,30 +187,36 @@ function saveTask() {
 	tasks.push(newTask);
     // refresh tasks
     displayTasks();
+	
 }
 
-function editTask(index) {
-    // Initialisez task form
-	newTask = {
-        'title'         :   title.value,
-        'type'          :   '',
-        'priority'      :   priority.value,
-        'status'        :   statusInput.value,
-        'date'          :   date.value,
-        'description'   :   description.value,
-	}
-    // Affichez updates
-    
-    // Delete Button
-    let modalFooter = getElementById()
-    // Définir l’index en entrée cachée pour l’utiliser en Update et Delete
+// function editTask(index) {
+//     // Initialisez task form
+// 	const task = {
+//         'title'         :   title.value,
+//         'type'          :   '',
+//         'priority'      :   priority.value,
+//         'status'        :   statusInput.value,
+//         'date'          :   date.value,
+//         'description'   :   description.value,
+// 	}
+// 	if (typeFeature.checked == true) {
+// 	           	task.type = "Feature";
+// 		    }
+// 		    else {
+// 		        task.type = "Bug";
+// 		    }
+//     // Affichez updates
+//     tasks[index] = task;
+//     // Delete Button
+// 	// Définir l’index en entrée cachée pour l’utiliser en Update et Delete
+//     // Definir FORM INPUTS
+//     // Ouvrir Modal form
+// 	displayTasks();
+// }
+// console.log(tasks);
 
-    // Definir FORM INPUTS
-
-    // Ouvrir Modal form
-}
-
-function updateTask() {
+function updateTask(index) {
     // GET TASK ATTRIBUTES FROM INPUTS
 
     // Créez task object
@@ -217,8 +225,51 @@ function updateTask() {
 
     // Fermer Modal form
 
+	document.getElementById("save").style.display="none";
+	document.getElementById("update").style.display="block";
+
     // Refresh tasks
-    
+	let indexx = index-1;
+	title.value = tasks[indexx].title;
+    description.value = tasks[indexx].description;
+    date.value = tasks[indexx].date;
+    if (tasks[indexx].type == "Feature") {
+        typeFeature.checked = true;
+    }
+    else {
+        typeBug.checked = true;
+    }
+    priority.value = tasks[indexx].priority;
+    statusInput.value = tasks[indexx].status;
+       
+	document.getElementById("update").onclick=()=>{
+		// Initialisez task form
+		 task = {
+			'title'         :   title.value,
+			'type'          :   '',
+			'priority'      :   priority.value,
+			'status'        :   statusInput.value,
+			'date'          :   date.value,
+			'description'   :   description.value,
+		}
+		if (typeFeature.checked == true) {
+					   task.type = "Feature";
+				}
+				else {
+					task.type = "Bug";
+				}
+		// Affichez updates
+		tasks[index-1] = task;
+		// Delete Button
+		// Définir l’index en entrée cachée pour l’utiliser en Update et Delete
+		// Definir FORM INPUTS
+		
+	document.getElementById("save").style.display="block";
+	document.getElementById("update").style.display="none";
+		// Ouvrir Modal form
+		displayTasks();
+		
+	}
 }
 function deleteTask(index){
     // Get index of task in the array
@@ -237,8 +288,12 @@ function initTaskForm() {
     // Hide all action buttons
 }
 
-function reloadTasks() {
-    // Remove tasks elements
+// function reloadTasks() {
+//     // Remove tasks elements
 
-    // Set Task count
+//     // Set Task count
+// }
+
+function reloadTasks() {
+    taskForm.reset();
 }

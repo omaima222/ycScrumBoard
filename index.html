@@ -37,7 +37,7 @@
 				</div>
 				
 				<div class="py-3 text-center ">
-					<button class="btn btn-white text-black px-4 rounded-pill border-0 border-bottom border-3 border-black" data-bs-toggle="modal" data-bs-target="#modal-task"><i class=" fa fa-plus text-black"></i > Add Task</a>
+					<button onclick="reloadTasks();" class="btn btn-white text-black px-4 rounded-pill border-0 border-bottom border-3 border-black" data-bs-toggle="modal" data-bs-target="#modal-task"><i class=" fa fa-plus text-black"></i > Add Task</a>
 				</div>
 			</div>
 			
@@ -100,7 +100,7 @@
 				  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-				  <form name="taskForm">
+				  <form id="taskForm">
 					  <div>
 					       <label for="recipient-name" class="col-form-label">Title</label>
 					       <input type="text" class="form-control" id="title">
@@ -126,7 +126,7 @@
 							  <option selected>PLease select</option>
 							  <option value="Low">Low</option>
 							  <option value="Medium">Medium</option>
-							  <option value="Hight">High</option>
+							  <option value="High">High</option>
 						    </select>
 				     </div>
 					<div>
@@ -149,9 +149,11 @@
 				  </form>
 				</div>
 				
-				<div class="modal-footer">
+				<div class="modal-footer" id="modalFooter">
 				  <button type="button" class="btn btn-white " data-bs-dismiss="modal">Cancel</button>
-				  <button onclick="saveTask();"  type="button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+				  <button id="save" style="display: block;"  onclick="saveTask();"  type="button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+				  <button id="update" style="display: none;" type="button" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
+
 				</div>
 			  </div>
 			</div>
