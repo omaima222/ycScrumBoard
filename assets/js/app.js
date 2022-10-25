@@ -54,8 +54,8 @@ for(let i=0;i<tasks.length;i++)
 										<div class="fw-bold" title="${tasks[i].description}">${shortdes}</div>
 									</div>
 									<div class="">
-										<span class="btn btn-primary px-2 py-1 rounded-pill border-0 ">${tasks[i].priority}</span>
-										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25 rounded-pill border-0 text-black ">${tasks[i].type}</span>
+										<span class="btn btn-primary px-2 py-1  border-0 ">${tasks[i].priority}</span>
+										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25  border-0 text-black ">${tasks[i].type}</span>
 									</div>
 								</div>
 								<div class="justify-content-end align-self-end  position-absolute end-0 mx-5 ">
@@ -83,8 +83,8 @@ for(let i=0;i<tasks.length;i++)
 										<div class="fw-bold" title="${tasks[i].description}">${shortdes}</div>
 									</div>
 									<div class="">
-										<span class="btn btn-primary rounded-pill px-2 py-1 border-0 ">${tasks[i].priority}</span>
-										<span class="btn btn-primary rounded-pill px-2 py-1 bg-gray bg-opacity-25 border-0 text-black ">${tasks[i].type}</span>
+										<span class="btn btn-primary  px-2 py-1 border-0 ">${tasks[i].priority}</span>
+										<span class="btn btn-primary  px-2 py-1 bg-gray bg-opacity-25 border-0 text-black ">${tasks[i].type}</span>
 									</div>
 								</div>
 								<div class="justify-content-end align-self-end  position-absolute end-0 mx-5 ">
@@ -113,8 +113,8 @@ for(let i=0;i<tasks.length;i++)
 									</div>
 
 									<div class="">
-										<span class="btn btn-primary rounded-pill px-2 py-1 border-0">${tasks[i].priority}</span>
-										<span class="btn btn-primary rounded-pill px-2 py-1 bg-gray bg-opacity-25 border-0 text-black">${tasks[i].type}</span>
+										<span class="btn btn-primary  px-2 py-1 border-0">${tasks[i].priority}</span>
+										<span class="btn btn-primary  px-2 py-1 bg-gray bg-opacity-25 border-0 text-black">${tasks[i].type}</span>
 									</div>
 								</div>
 							<div class="justify-content-end align-self-end  position-absolute end-0 mx-5 ">
