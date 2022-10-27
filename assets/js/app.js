@@ -36,9 +36,9 @@ function displayTasks(){
 for(let i=0;i<tasks.length;i++)
 {
 	if(tasks[i].description.length>50){
-		shortdes = tasks[i].description.substring(0,50);
+		shortdes = tasks[i].description.substring(0,50) + "...";
 	}   else{ shortdes = tasks[i].description }
-
+    
 
 	if(tasks[i].status == "To Do"){
 	 todoco++;
@@ -58,10 +58,10 @@ for(let i=0;i<tasks.length;i++)
 										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25  border-0 text-black ">${tasks[i].type}</span>
 									</div>
 								</div>
-								<div class="justify-content-end align-self-end  position-absolute end-0 mx-5 ">
+								<div class=" justify-content-end align-self-end  position-absolute end-0 mx-5 ">
 								   <i onclick="updateTask(${x});"  data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
 								</div>
-								<div class="justify-content-end align-self-end  position-absolute end-0 mx-2">
+								<div class=" justify-content-end align-self-end  position-absolute end-0 mx-2">
 								   <i onclick="deleteTask(${x});"  class="fa-solid fa-trash "></i>
 								</div>
 													
@@ -137,7 +137,7 @@ doneCount.innerHTML = donco;
 
 //----------------------------------Save task----------------------------------//
 
-function saveTask() {
+function saveTask(){
     
 	document.getElementById("update").style.display="none";
 	newTask = {
@@ -163,7 +163,7 @@ function saveTask() {
 
 //----------------------------------Update task----------------------------------//
 
-function updateTask(index) {
+function updateTask(index){
    
 	document.getElementById("save").style.display="none";
 	document.getElementById("update").style.display="block";
@@ -215,14 +215,16 @@ function updateTask(index) {
 
 function deleteTask(index){
     
-	alert("do you really want to delete this task ?");
-	tasks.splice (index-1, 1);
-    displayTasks();
-
+	let conf = confirm("do you want to delete this task ?");
+	if( conf == true){
+		tasks.splice (index-1, 1);
+		displayTasks();
+	}
+	
 } 
 
 //----------------------------------Reload Modal form----------------------------------//
 
-function reloadTasks() {
+function reloadTasks(){
     taskForm.reset();
 }
