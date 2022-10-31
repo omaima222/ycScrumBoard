@@ -58,43 +58,13 @@
 							<!-- TO DO TASKS HERE -->
 							<?php
 								//PHP CODE HERE	
-								if($tasks['status_id']==1){				
-								foreach( $tasks as $task ){ ?>
-                                <?php if($task['type_id']==1) $task['type_id'] = "Feature";
-								      else  $task['type_id'] = "Bug";
-									  if($task['priority_id']==1) $task['priority_id'] = "Low";
-									  else if($task['priority_id']==2) $task['priority_id'] = "Medium";
-									  else $task['priority_id'] = "High";
-								?>
-								<button class="card-body btn btn-white rounded-0 border-0 border-bottom p-2 d-flex">
-								  <div class="px-3 py-2 fa-lg">
-									<i class="bi bi-question-circle text-success "></i> 
-								</div>
-								<div class="text-start">
-									<div class=" fw-bolder "><?php echo $task['title']; ?></div>
-									<div class="card-text">
-										<div class="text-secondary"># created in <?php echo $task['task_datetime']; ?></div>
-										<div class="fw-bold" title="<?php echo $task['description']; ?>"> <?php echo $task['description']; ?></div>
-									</div>
-									<div class="">
-										<span class="btn btn-primary px-2 py-1  border-0 "> <?php echo $task['priority_id']; ?></span>
-										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25  border-0 text-black "><?php echo $task['type_id']; ?></span>
-									</div>
-								</div>
-								<div class=" justify-content-end align-self-end  position-absolute end-0 mx-5 ">
-								   <i onclick="updateTask(${x});"  data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
-								</div>
-								<div class=" justify-content-end align-self-end  position-absolute end-0 mx-2">
-								   <i onclick="deleteTask(${x});"  class="fa-solid fa-trash "></i>
-								</div>					
-	                          	</button>
-	 							
-								<?php
+								getTasks(1); 											
+							
 								//DATA FROM getTasks() FUNCTION
 
-								getTasks(); }
 								
-								}	
+								
+									
 							?>
 						</div>
 					</div>
@@ -111,40 +81,12 @@
 							<!-- IN PROGRESS TASKS HERE -->
 							<?php
 								//PHP CODE HERE
-								foreach( $tasks as $task ){ ?>
-								<?php if($task['type_id']==1) $task['type_id'] = "Feature";
-								      else  $task['type_id'] = "Bug";
-									  if($task['priority_id']==1) $task['priority_id'] = "Low";
-									  else if($task['priority_id']==2) $task['priority_id'] = "Medium";
-									  else $task['priority_id'] = "High";
-								?>
-								<button class="card-body btn btn-white rounded-0 border-0 border-bottom p-2 d-flex">
-								<div class="mx-3 my-2 spinner-border  spinner-border-sm text-success" role="status">
-									<span class="visually-hidden"></span> 
-								</div>
-								<div class="text-start">
-									<div class=" fw-bolder "><?php echo $task['title']; ?></div>
-									<div class="card-text">
-										<div class="text-secondary"># created in <?php echo $task['task_datetime']; ?></div>
-										<div class="fw-bold" title="<?php echo $task['description']; ?>"> <?php echo $task['description']; ?></div>
-									</div>
-									<div class="">
-										<span class="btn btn-primary px-2 py-1  border-0 "> <?php echo $task['priority_id']; ?></span>
-										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25  border-0 text-black "><?php echo $task['type_id']; ?></span>
-									</div>
-								</div>
-								<div class=" justify-content-end align-self-end  position-absolute end-0 mx-5 ">
-								   <i onclick="updateTask(${x});"  data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
-								</div>
-								<div class=" justify-content-end align-self-end  position-absolute end-0 mx-2">
-								   <i onclick="deleteTask(${x});"  class="fa-solid fa-trash "></i>
-								</div>					
-	                          	</button>
-	 							
-								<?php
+								
+								
+								
 								//DATA FROM getTasks() FUNCTION
 
-								getTasks(); }
+								getTasks(2); 
 								
 								
 							?>
@@ -161,40 +103,11 @@
 							<!-- DONE TASKS HERE -->
 							<?php
 								//PHP CODE HERE
-								foreach( $tasks as $task ){ ?>
-								<?php if($task['type_id']==1) $task['type_id'] = "Feature";
-								      else  $task['type_id'] = "Bug";
-									  if($task['priority_id']==1) $task['priority_id'] = "Low";
-									  else if($task['priority_id']==2) $task['priority_id'] = "Medium";
-									  else $task['priority_id'] = "High";
-								?>
-								<button class="card-body btn btn-white rounded-0 border-0 border-bottom p-2 d-flex">
-								<div class="px-3 py-2 fa-lg">
-									<i class="bi bi-check-circle text-success"></i> 
-								</div>
-								<div class="text-start">
-									<div class=" fw-bolder "><?php echo $task['title']; ?></div>
-									<div class="card-text">
-										<div class="text-secondary"># created in <?php echo $task['task_datetime']; ?></div>
-										<div class="fw-bold" title="<?php echo $task['description']; ?>"> <?php echo $task['description']; ?></div>
-									</div>
-									<div class="">
-										<span class="btn btn-primary px-2 py-1  border-0 "> <?php echo $task['priority_id']; ?></span>
-										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25  border-0 text-black "><?php echo $task['type_id']; ?></span>
-									</div>
-								</div>
-								<div class=" justify-content-end align-self-end  position-absolute end-0 mx-5 ">
-								   <i onclick="updateTask(${x});"  data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
-								</div>
-								<div class=" justify-content-end align-self-end  position-absolute end-0 mx-2">
-								   <i onclick="deleteTask(${x});"  class="fa-solid fa-trash "></i>
-								</div>					
-	                          	</button>
-	 							
-								<?php
+								
+								
 								//DATA FROM getTasks() FUNCTION
 
-								getTasks(); }
+								getTasks(3); 
 								
 								
 							?>
@@ -224,21 +137,21 @@
 				       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				  </div>
 				  <div class="modal-body">
-				        <form id="taskForm">
+				        <form id="taskForm" action="script.php" method="POST" >
 					        <div>
 					            <label for="title" class="col-form-label">Title</label>
-					            <input type="text" class="form-control" id="title">
+					            <input type="text" name="taskTitle"  class="form-control" id="title">
 					        </div>
 				            <div id="type">
 					            <label class="col-form-label">Type</label>
 					            <div class="form-check mx-3">
-						             <input class="form-check-input" type="radio" name="flexRadioDefault" id="feature">
+						             <input class="form-check-input" type="radio" name="taskType" id="feature" value= "1" >
 						             <label class="form-check-label" for="flexRadioDefault1">
 						               Feature
 					                </label>
 					            </div>
 					            <div class="form-check mx-3">
-						             <input class="form-check-input" type="radio" name="flexRadioDefault" id="bug" checked>
+						             <input class="form-check-input" type="radio" name="taskType" id="bug" value="2">
 						             <label class="form-check-label" for="flexRadioDefault2">
 						              Bug
 						            </label>
@@ -246,38 +159,39 @@
 				         	</div>
 					        <div>  
 						            <label for="priority" class="col-form-label">priority</label>
-						            <select class="form-select" aria-label="Default select example" id="priority">
+						            <select class="form-select" aria-label="Default select example" name="taskPriority" id="priority">
 							        <option selected>PLease select</option>
-							        <option value="Low">Low</option>
-							        <option value="Medium">Medium</option>
-							        <option value="High">High</option>
+							        <option value= 1 >Low</option>
+							        <option value= 2 >Medium</option>
+							        <option value= 3 >High</option>
 						            </select>
 				            </div>
 					        <div>
 					             	<label for="status" class="col-form-label">status</label>
-						            <select class="form-select" aria-label="Default select example" id="status">
+						            <select class="form-select" aria-label="Default select example" name="taskStatus" id="status">
 						         	<option selected>PLease select</option>
-							        <option value="To Do">To do</option>
-							        <option value="In Progress">In Progress</option>
-							        <option value="Done">Done</option>
+							        <option value= 1 >To do</option>
+							        <option value= 2 >In Progress</option>
+							        <option value= 3 >Done</option>
 						            </select>					
 				            </div>
 					        <div>
 					                <label for="date" class="col-form-label">date</label>
-						            <input type="date" class="form-control" id="date">
+						            <input type="date" class="form-control" name="taskDate" id="date">
 					        </div>
 				        	<div class="mb-3">
 					                <label for="description" class="col-form-label">description</label>
-					                <textarea class="form-control" id="description"></textarea>
+					                <textarea class="form-control" name="taskDescription" id="description"></textarea>
 				          	</div>
-				        </form>
-				  </div>
+				       
+				  </div>	
 				
 				  <div class="modal-footer" id="modalFooter">
-				       <button type="button" class="btn btn-white " data-bs-dismiss="modal">Cancel</button>
-				       <button id="save" style="display: block;"  onclick="saveTask();"  type="button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
-				       <button id="update" style="display: none;" type="button" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
+				       <button type="submit" class="btn btn-white " data-bs-dismiss="modal">Cancel</button>
+				       <button type="submit" id="task-save-btn" style="display: block;"   name = "save" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+				       <button  type="submit" id="task-update-btn" style="display: none;"   name = "update" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
 				  </div>
+				  </form>
 			  </div>
 	     	</div>
 		</div>
