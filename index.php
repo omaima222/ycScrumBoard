@@ -1,3 +1,8 @@
+<?php
+    include('script.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -51,6 +56,46 @@
 						</div>
 						<div class="list-group list-group-flush" id="to-do-tasks">
 							<!-- TO DO TASKS HERE -->
+							<?php
+								//PHP CODE HERE	
+								if($tasks['status_id']==1){				
+								foreach( $tasks as $task ){ ?>
+                                <?php if($task['type_id']==1) $task['type_id'] = "Feature";
+								      else  $task['type_id'] = "Bug";
+									  if($task['priority_id']==1) $task['priority_id'] = "Low";
+									  else if($task['priority_id']==2) $task['priority_id'] = "Medium";
+									  else $task['priority_id'] = "High";
+								?>
+								<button class="card-body btn btn-white rounded-0 border-0 border-bottom p-2 d-flex">
+								  <div class="px-3 py-2 fa-lg">
+									<i class="bi bi-question-circle text-success "></i> 
+								</div>
+								<div class="text-start">
+									<div class=" fw-bolder "><?php echo $task['title']; ?></div>
+									<div class="card-text">
+										<div class="text-secondary"># created in <?php echo $task['task_datetime']; ?></div>
+										<div class="fw-bold" title="<?php echo $task['description']; ?>"> <?php echo $task['description']; ?></div>
+									</div>
+									<div class="">
+										<span class="btn btn-primary px-2 py-1  border-0 "> <?php echo $task['priority_id']; ?></span>
+										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25  border-0 text-black "><?php echo $task['type_id']; ?></span>
+									</div>
+								</div>
+								<div class=" justify-content-end align-self-end  position-absolute end-0 mx-5 ">
+								   <i onclick="updateTask(${x});"  data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
+								</div>
+								<div class=" justify-content-end align-self-end  position-absolute end-0 mx-2">
+								   <i onclick="deleteTask(${x});"  class="fa-solid fa-trash "></i>
+								</div>					
+	                          	</button>
+	 							
+								<?php
+								//DATA FROM getTasks() FUNCTION
+
+								getTasks(); }
+								
+								}	
+							?>
 						</div>
 					</div>
 				</div>
@@ -63,7 +108,46 @@
 
 						</div>
 						<div class="list-group list-group-flush" id="in-progress-tasks">
-							<!-- IN PROGRESS TASKS HERE -->	
+							<!-- IN PROGRESS TASKS HERE -->
+							<?php
+								//PHP CODE HERE
+								foreach( $tasks as $task ){ ?>
+								<?php if($task['type_id']==1) $task['type_id'] = "Feature";
+								      else  $task['type_id'] = "Bug";
+									  if($task['priority_id']==1) $task['priority_id'] = "Low";
+									  else if($task['priority_id']==2) $task['priority_id'] = "Medium";
+									  else $task['priority_id'] = "High";
+								?>
+								<button class="card-body btn btn-white rounded-0 border-0 border-bottom p-2 d-flex">
+								<div class="mx-3 my-2 spinner-border  spinner-border-sm text-success" role="status">
+									<span class="visually-hidden"></span> 
+								</div>
+								<div class="text-start">
+									<div class=" fw-bolder "><?php echo $task['title']; ?></div>
+									<div class="card-text">
+										<div class="text-secondary"># created in <?php echo $task['task_datetime']; ?></div>
+										<div class="fw-bold" title="<?php echo $task['description']; ?>"> <?php echo $task['description']; ?></div>
+									</div>
+									<div class="">
+										<span class="btn btn-primary px-2 py-1  border-0 "> <?php echo $task['priority_id']; ?></span>
+										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25  border-0 text-black "><?php echo $task['type_id']; ?></span>
+									</div>
+								</div>
+								<div class=" justify-content-end align-self-end  position-absolute end-0 mx-5 ">
+								   <i onclick="updateTask(${x});"  data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
+								</div>
+								<div class=" justify-content-end align-self-end  position-absolute end-0 mx-2">
+								   <i onclick="deleteTask(${x});"  class="fa-solid fa-trash "></i>
+								</div>					
+	                          	</button>
+	 							
+								<?php
+								//DATA FROM getTasks() FUNCTION
+
+								getTasks(); }
+								
+								
+							?>
 						</div>
 					</div>
 				</div>
@@ -75,6 +159,45 @@
 						</div>
 						<div class="list-group list-group-flush" id="done-tasks">
 							<!-- DONE TASKS HERE -->
+							<?php
+								//PHP CODE HERE
+								foreach( $tasks as $task ){ ?>
+								<?php if($task['type_id']==1) $task['type_id'] = "Feature";
+								      else  $task['type_id'] = "Bug";
+									  if($task['priority_id']==1) $task['priority_id'] = "Low";
+									  else if($task['priority_id']==2) $task['priority_id'] = "Medium";
+									  else $task['priority_id'] = "High";
+								?>
+								<button class="card-body btn btn-white rounded-0 border-0 border-bottom p-2 d-flex">
+								<div class="px-3 py-2 fa-lg">
+									<i class="bi bi-check-circle text-success"></i> 
+								</div>
+								<div class="text-start">
+									<div class=" fw-bolder "><?php echo $task['title']; ?></div>
+									<div class="card-text">
+										<div class="text-secondary"># created in <?php echo $task['task_datetime']; ?></div>
+										<div class="fw-bold" title="<?php echo $task['description']; ?>"> <?php echo $task['description']; ?></div>
+									</div>
+									<div class="">
+										<span class="btn btn-primary px-2 py-1  border-0 "> <?php echo $task['priority_id']; ?></span>
+										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25  border-0 text-black "><?php echo $task['type_id']; ?></span>
+									</div>
+								</div>
+								<div class=" justify-content-end align-self-end  position-absolute end-0 mx-5 ">
+								   <i onclick="updateTask(${x});"  data-bs-target="#modal-task"data-bs-toggle="modal" class="fa-solid fa-pen "></i>
+								</div>
+								<div class=" justify-content-end align-self-end  position-absolute end-0 mx-2">
+								   <i onclick="deleteTask(${x});"  class="fa-solid fa-trash "></i>
+								</div>					
+	                          	</button>
+	 							
+								<?php
+								//DATA FROM getTasks() FUNCTION
+
+								getTasks(); }
+								
+								
+							?>
 					
 						</div>
 					</div>
