@@ -187,9 +187,8 @@
 				  </div>	
 				
 				  <div class="modal-footer" id="modalFooter">
-				       <button type="submit" class="btn btn-white " data-bs-dismiss="modal">Cancel</button>
-				       <button type="submit" id="task-save-btn" name = "save" class="btn btn-primary" >Save</button>
-				       <button  type="submit" id="task-update-btn" style="display: block;"   name = "update" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
+				       <button type="submit" class="btn btn-white" >Cancel</button>
+				       <button type="submit" id="task-save-btn" name="save" class="btn btn-primary" >Save</button>
 				  </div>                                                                                                 
 				  </form>
 			  </div>

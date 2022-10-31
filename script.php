@@ -1,14 +1,13 @@
 <?php
     //INCLUDE DATABASE FILE
     include('database.php');
-    include('update.php');
     //SESSSION IS A WAY TO STORE DATA TO BE USED ACROSS MULTIPLE PAGES
     session_start();
 
     //ROUTING
     if(isset($_POST['save']))        saveTask();
     if(isset($_POST['delete']))      deleteTask();
-       
+      
     
     function getTasks($status)
     {
@@ -40,7 +39,9 @@
 								</div>
                                 <form action="script.php" method="post" class="d-flex justify-content-end align-items-end p-0 m-0 card-footer ">
                                  <div class="btn-group border-bottom" role="toolbar" >
-                                     <button type="button" name="update"  value="<?php echo $task['task_id']; ?>" class="border-0 btn btn-white task-action-btn"><i class="fa-solid fa-pen "></i></button>
+                                     <button type="button" class="border-0 btn btn-white task-action-btn">
+                                        <a href="update.php?updateId='<?php echo $task['task_id']; ?>'"><i class="fa-solid fa-pen "></i></a>
+                                     </button>
                                      <button type="submit" name="delete" value="<?php echo $task['task_id']; ?>" class="border-0 btn btn-white task-action-btn"><i class="fa-solid fa-trash" ></i></button>	
                                  </div>
                                 </form>				
@@ -86,5 +87,5 @@
         $_SESSION['message'] = "Task has been deleted successfully !";
 		header('location: index.php');
     }
-
-?>
+     
+  
