@@ -8,7 +8,8 @@
     if(isset($_POST['save']))        saveTask();
     if(isset($_POST['delete']))      deleteTask();
       
-    
+    // =========================== Getting and displaying data =========================== //  
+
     function getTasks($status)
     {
        //CODE HERE
@@ -20,7 +21,7 @@
        WHERE status_id = $status";
 
         $result = mysqli_query( $conn , $sql);
-        while(    $task = mysqli_fetch_assoc($result)   ) {
+        while(    $task = mysqli_fetch_assoc($result)   )  {
           ?>
           <button class="card-body btn btn-white rounded-0 border-0 border-bottom p-2 d-flex">
 								<div class="px-3 py-2 fa-lg">
@@ -40,17 +41,42 @@
                                 <form action="script.php" method="post" class="d-flex justify-content-end align-items-end p-0 m-0 card-footer ">
                                  <div class="btn-group border-bottom" role="toolbar" >
                                      <button type="button" class="border-0 btn btn-white task-action-btn">
-                                        <a href="update.php?updateId='<?php echo $task['task_id']; ?>'"><i class="fa-solid fa-pen "></i></a>
+                                        <a href="update.php?updateId=<?=$task['task_id']; ?>"><i class="fa-solid fa-pen "></i></a>
                                      </button>
                                      <button type="submit" name="delete" value="<?php echo $task['task_id']; ?>" class="border-0 btn btn-white task-action-btn"><i class="fa-solid fa-trash" ></i></button>	
                                  </div>
                                 </form>				
-	                          	</button>
+	       </button>
           <?php    
         }        
     }
+    
+    // =========================== Updating tasks =========================== //  
 
-   
+   if(isset($_POST['update']))
+   {
+            $id          = $_POST['taskId'];
+            $title       = $_POST['taskTitle'];
+			$date        = $_POST['taskDate'];
+			$status      = $_POST['taskStatus'];
+            $priority    = $_POST['taskPriority'];
+			$type        = $_POST['taskType'];
+            $description = $_POST['taskDescription'];
+            
+        
+            $updateit="UPDATE tasks SET  title='$title', type_id='$type', priority_id='$priority', status_id='$status', task_datetime='$date', description='$description' WHERE task_id='$id'";
+            $resultup=mysqli_query($conn,$updateit);
+            
+			if($resultup){
+				echo "Updated successefully";
+				header('location: index.php');
+			}else
+			{
+				die(mysqli_error($conn));
+			}
+    }
+
+// =========================== Saving data =========================== //  
 
     function saveTask()
     {
@@ -73,8 +99,9 @@
         
     }
   
+    // =========================== Deleting data =========================== //  
 
-   
+
     function deleteTask()
     {
         //CODE HERE
