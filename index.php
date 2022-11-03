@@ -58,7 +58,7 @@
 							<!-- TO DO TASKS HERE -->
 							<?php
 								//PHP CODE HERE	
-								getTasks(1); 											
+								getTasks(1,"bi bi-question-circle text-success"); 											
 							
 								//DATA FROM getTasks() FUNCTION
 
@@ -75,7 +75,6 @@
 					<div class="card border-0 ">
 						<div class="card-header py-1 px-2 bg-black">
 							<h4 class="card-header fs-6 text-white">In Progress (<span id="in-progress-tasks-count"></span>)</h4>
-
 						</div>
 						<div class="list-group list-group-flush" id="in-progress-tasks">
 							<!-- IN PROGRESS TASKS HERE -->
@@ -86,7 +85,7 @@
 								
 								//DATA FROM getTasks() FUNCTION
 
-								getTasks(2); 
+								getTasks(2,"spinner-border  spinner-border-sm text-success"); 
 								
 								
 							?>
@@ -107,7 +106,7 @@
 								
 								//DATA FROM getTasks() FUNCTION
 
-								getTasks(3); 
+								getTasks(3,"bi bi-check-circle text-success"); 
 								
 								
 							?>
@@ -187,7 +186,7 @@
 				  </div>	
 				
 				  <div class="modal-footer" id="modalFooter">
-				       <button type="submit" class="btn btn-white" >Cancel</button>
+				       <button type="button" class="btn btn-white" data-bs-dismiss="modal" aria-label="Close" >Cancel</button>
 				       <button type="submit" id="task-save-btn" name="save" class="btn btn-primary" >Save</button>
 				  </div>                                                                                                 
 				  </form>

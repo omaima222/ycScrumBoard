@@ -10,7 +10,7 @@
       
     // =========================== Getting and displaying data =========================== //  
 
-    function getTasks($status)
+    function getTasks($status,$icon)
     {
        //CODE HERE
        global $conn;
@@ -19,13 +19,13 @@
        INNER JOIN types on tasks.type_id=types.id 
        INNER JOIN priorities on tasks.priority_id=priorities.id 
        WHERE status_id = $status";
-
+   
         $result = mysqli_query( $conn , $sql);
         while(    $task = mysqli_fetch_assoc($result)   )  {
           ?>
-          <button class="card-body btn btn-white rounded-0 border-0 border-bottom p-2 d-flex">
+          <a  href="update.php?updateId=<?=$task['task_id']; ?>" class="card-body btn btn-white rounded-0 border-0 border-bottom p-2 d-flex" >
 								<div class="px-3 py-2 fa-lg">
-									<i class="bi bi-question-circle text-success "></i> 
+									<i class="<?= $icon ?>" ></i> 
 								</div>
 								<div class="text-start">
 									<div class=" fw-bolder "><?php echo $task['title']; ?></div>
@@ -38,15 +38,10 @@
 										<span class="btn btn-primary px-2 py-1 bg-gray bg-opacity-25  border-0 text-black "><?php echo $task['Tname']; ?></span>
 									</div>
 								</div>
-                                <form action="script.php" method="post" class="d-flex justify-content-end align-items-end p-0 m-0 card-footer ">
-                                 <div class="btn-group border-bottom" role="toolbar" >
-                                     <button type="button" class="border-0 btn btn-white task-action-btn">
-                                        <a href="update.php?updateId=<?=$task['task_id']; ?>"><i class="fa-solid fa-pen "></i></a>
-                                     </button>
-                                     <button type="submit" name="delete" value="<?php echo $task['task_id']; ?>" class="border-0 btn btn-white task-action-btn"><i class="fa-solid fa-trash" ></i></button>	
-                                 </div>
+                                <form action="script.php" method="post"  >
+                                   <button type="submit" name="delete"  onClick="confirm('do you really want to delete this task ?')" value="<?php echo $task['task_id']; ?>" class="border-0 btn btn-white task-action-btn d-felx justify-content-end align-self-end  position-absolute end-0 mx-2"><i class="fa-solid fa-trash" ></i></button>	
                                 </form>				
-	       </button>
+          </a>
           <?php    
         }        
     }
@@ -76,7 +71,7 @@
 			}
     }
 
-// =========================== Saving data =========================== //  
+   // =========================== Saving data =========================== //  
 
     function saveTask()
     {

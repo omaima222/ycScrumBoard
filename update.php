@@ -26,6 +26,8 @@
           $priority = $task['priority_id'];
           $type = $task['type_id'];
           $description =  $task['description'];
+
+
         
     ?>
         
@@ -52,7 +54,7 @@
 						 <!-- Modal content goes here -->
 				  <div class="modal-header">
 				       <h1 class="modal-title fs-5" id="exampleModalLabel">Add Task</h1>
-				       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				       <a href="index.php"><button type="button" class="btn-close" ></button></a>
 				  </div>
 				  <div class="modal-body">
 				        <form id="taskForm" action="update.php" method="POST" >
@@ -107,7 +109,7 @@
                                                                                                 
 				
                 <div class="modal-footer" id="modalFooter">
-                                        <button type="submit" class="btn btn-white " >Cancel</button>
+                                        <button type="button" class="btn btn-white" ><a href="index.php">Cancel</a></button>
                                         <button  type="submit" name="update" class="btn btn-primary" >Update</button>
                 </div>                                                                                                 
                 </form>
@@ -122,9 +124,9 @@
         document.getElementById("feature").checked = true;
       <?php }else{ ?> document.getElementById("bug").checked = true; <?php }
          ?>
-         document.getElementById("priority").value = $priority;
-         document.getElementById("status").value   = $status;
-         document.getElementById("date").value   = $date;
+         document.getElementById("priority").=$priority;
+         document.getElementById("status")  =$status;
+         document.getElementById("date")    =$date;
 
     </script>
 
