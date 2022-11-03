@@ -3,8 +3,7 @@
     <?php
  
         include('script.php');
-
-
+ 
         global $conn;
         if(isset($_GET['updateId']))
         $GLOBALS['id'] = $_GET['updateId'];
@@ -46,7 +45,8 @@
 	<link href="assets/css/default/app.min.css" rel="stylesheet" />
 	<link href="assets/css/style.css" rel="stylesheet" />
         </head>
-        <body>
+        
+    <body>
            
         <div  id="modal-task" tabindex="-1" aria-labelledby="exampleModalLabel" >
 			<div class="modal-dialog">
@@ -62,18 +62,18 @@
                           <input type="hidden" name="taskId" value="<?php echo $id?>" class="form-control" id="id">
                                     <div>
                                         <label for="title" class="col-form-label">Title</label>
-                                        <input type="text" name="taskTitle" value="<?php echo $title?>" class="form-control" id="title">
+                                        <input type="text" name="taskTitle" value="<?php echo $title?>" class="form-control" id="title" required>
                                     </div>
                                     <div id="type">
                                         <label class="col-form-label">Type</label>
                                         <div class="form-check mx-3">
-                                             <input class="form-check-input" type="radio" name="taskType" id="feature" value= "1" >
+                                             <input class="form-check-input" type="radio" name="taskType" id="feature" value= "1" <?php echo $type==1 ? 'checked':'';?> >
                                              <label class="form-check-label" for="flexRadioDefault1">
                                                Feature
                                             </label>
                                         </div>
                                         <div class="form-check mx-3">
-                                             <input class="form-check-input" type="radio" name="taskType" id="bug" value="2">
+                                             <input class="form-check-input" type="radio" name="taskType" id="bug" value="2" <?php echo $type==2 ? 'checked':'';?>>
                                              <label class="form-check-label" for="flexRadioDefault2">
                                               Bug
                                          </label>
@@ -81,29 +81,30 @@
                                      </div>
                                     <div>  
                                             <label for="priority" class="col-form-label">priority</label>
-                                            <select class="form-select" aria-label="Default select example" name="taskPriority" id="priority">
-                                            <option selected>PLease select</option>
-                                            <option value= 1 >Low</option>
-                                            <option value= 2 >Medium</option>
-                                            <option value= 3 >High</option>
+                                            <select class="form-select" aria-label="Default select example" name="taskPriority" id="priority" required>
+                                            <option  disabled value="">PLease select</option>
+                                            <option value= 1 <?php echo $priority==1 ? 'selected':'';?> >Low</option>
+                                            <option value= 2 <?php echo $priority==2 ? 'selected':'';?> >Medium</option>
+                                            <option value= 3 <?php echo $priority==3 ? 'selected':'';?> >High</option>
+                                            <option value= 4 <?php echo $priority==4 ? 'selected':'';?> >Critical</option>
                                             </select>
                                     </div>
                                     <div>
                                              <label for="status" class="col-form-label">status</label>
-                                            <select class="form-select" aria-label="Default select example" name="taskStatus" id="status">
-                                            <option selected>PLease select</option>
-                                            <option value= 1 >To do</option>
-                                            <option value= 2 >In Progress</option>
-                                            <option value= 3 >Done</option>
+                                            <select class="form-select" aria-label="Default select example" name="taskStatus" id="status" required>
+                                            <option  disabled value="">PLease select</option>
+                                            <option value= 1 <?php echo $status==1 ? 'selected':'';?> >To do</option>
+                                            <option value= 2 <?php echo $status==2 ? 'selected':'';?> >In Progress</option>
+                                            <option value= 3 <?php echo $status==3 ? 'selected':'';?> >Done</option>
                                             </select>					
                                     </div>
                                     <div>
                                             <label for="date" class="col-form-label">date</label>
-                                            <input type="date" class="form-control"name="taskDate" id="date">
+                                            <input type="date" value="<?php echo $date?>" class="form-control"name="taskDate" id="date" required>
                                     </div>
                                     <div class="mb-3">
                                             <label for="description" class="col-form-label">description</label>
-                                            <textarea class="form-control" name="taskDescription" id="description"><?php echo $description?></textarea>
+                                            <textarea class="form-control" name="taskDescription" id="description" required><?php echo $description?></textarea>
                                     </div>
                                                      
                                                                                                 
@@ -119,16 +120,6 @@
         
         </body>
     </html>
-    <script>
-      <?php if($type == 1){  ?>
-        document.getElementById("feature").checked = true;
-      <?php }else{ ?> document.getElementById("bug").checked = true; <?php }
-         ?>
-         document.getElementById("priority").=$priority;
-         document.getElementById("status")  =$status;
-         document.getElementById("date")    =$date;
-
-    </script>
 
 
 
